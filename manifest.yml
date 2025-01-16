@@ -1,0 +1,41 @@
+app_id: 051b216f130f46f5a4b37297ef372ab0
+name: foundry-sandbox
+description: ""
+logo: ""
+manifest_version: "2023-05-09"
+ignored:
+  - ui/(extensions|pages)(/.*?)/?node_modules
+ui:
+  homepage: ""
+  extensions:
+    - id: 3828e32732654a32bfd84bd248b68b4d
+      name: detection-details
+      description: ""
+      path: ui/extensions/detection-details/dist
+      entrypoint: ui/extensions/detection-details/dist/index.html
+      sockets:
+        - activity.detections.details
+      content_security_policy:
+        connect-src: []
+        style-src: []
+        style-src-elem: []
+        script-src: []
+        form-action: []
+        img-src: []
+        media-src: []
+        object-src: []
+      permissions: []
+  pages: {}
+  dashboards: {}
+  navigation: {}
+api_integrations: []
+rtr_scripts: []
+collections: []
+auth:
+  scopes: []
+  permissions: {}
+  roles: []
+functions: []
+workflows: []
+logscale:
+  saved_searches: []
