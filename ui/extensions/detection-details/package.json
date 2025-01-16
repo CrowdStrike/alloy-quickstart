@@ -4,9 +4,10 @@
   "scripts": {
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
-    "watch": "webpack --watch --mode development"
+    "watch": "webpack --mode production --watch"
   },
   "dependencies": {
+    "@crowdstrike/foundry-js": "^0.17.1",
     "@patternfly/react-core": "^6.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
