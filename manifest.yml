@@ -9,7 +9,7 @@ ui:
   homepage: ""
   extensions:
     - id: 3828e32732654a32bfd84bd248b68b4d
-      name: detection-details
+      name: Sandbox details
       description: ""
       path: ui/extensions/detection-details/dist
       entrypoint: ui/extensions/detection-details/dist/index.html
