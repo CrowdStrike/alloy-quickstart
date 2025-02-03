@@ -1,7 +1,7 @@
 import { Panel } from "@patternfly/react-core";
-import { ReactNode } from "react";
-import { FalconApiProvider } from "../lib/falconapi";
+import { ReactNode, useEffect } from "react";
 
+import { useFoundry } from "../lib/foundry-context";
 import "./ConsoleExtension.css";
 
 interface ConsoleExtensionProps {
@@ -9,9 +9,17 @@ interface ConsoleExtensionProps {
 }
 
 export default function ConsoleExtension({ children }: ConsoleExtensionProps) {
-  return (
-    <FalconApiProvider>
-      <Panel className="main-panel">{children}</Panel>
-    </FalconApiProvider>
-  );
+  const { data } = useFoundry();
+
+  useEffect(() => {
+    if (data == undefined) {
+      return;
+    } else if (data.theme == "theme-dark") {
+      document.documentElement.classList.add("pf-v6-theme-dark");
+    } else {
+      document.documentElement.classList.remove("pf-v6-theme-dark");
+    }
+  }, [data]);
+
+  return <Panel className="main-panel">{children}</Panel>;
 }

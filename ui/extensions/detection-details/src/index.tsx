@@ -2,15 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 
-import ConsoleExtension from "./components/ConsoleExtension";
+import { FoundryProvider } from "./lib/foundry-context";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <ConsoleExtension>
+    <FoundryProvider>
       <App />
-    </ConsoleExtension>
+    </FoundryProvider>
   </React.StrictMode>
 );
