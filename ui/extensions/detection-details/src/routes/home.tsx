@@ -6,20 +6,20 @@ import {
 } from "@patternfly/react-core";
 
 interface HomeProps {
-  data: any;
+  detection: any;
 }
 
-export default function Home({ data }: HomeProps) {
+export default function Home({ detection }: HomeProps) {
   return (
     <DescriptionList>
       <DescriptionListGroup>
         <DescriptionListTerm>Objective</DescriptionListTerm>
         <DescriptionListDescription>
-          <code>{data.detection.objective}</code>
+          {detection.objective}
         </DescriptionListDescription>
         <DescriptionListTerm>Detection ID</DescriptionListTerm>
         <DescriptionListDescription>
-          <code>{data.detectionId}</code>
+          <code>{detection.composite_id}</code>
         </DescriptionListDescription>
       </DescriptionListGroup>
     </DescriptionList>

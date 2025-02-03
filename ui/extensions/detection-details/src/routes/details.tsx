@@ -7,22 +7,22 @@ import {
 } from "@patternfly/react-core";
 
 interface DetailsProps {
-  data: any;
+  detection: any;
 }
 
-export default function Details({ data }: DetailsProps) {
+export default function Details({ detection }: DetailsProps) {
   return (
     <DescriptionList>
       <DescriptionListGroup>
         <DescriptionListTerm>Data domains</DescriptionListTerm>
         <DescriptionListDescription>
-          {data.detection.data_domains.map((d: string) => {
+          {detection.data_domains.map((d: string) => {
             return <Label>{d}</Label>;
           })}
         </DescriptionListDescription>
         <DescriptionListTerm>Source products</DescriptionListTerm>
         <DescriptionListDescription>
-          {data.detection.source_products.map((p: string) => {
+          {detection.source_products.map((p: string) => {
             return <Label>{p}</Label>;
           })}
         </DescriptionListDescription>

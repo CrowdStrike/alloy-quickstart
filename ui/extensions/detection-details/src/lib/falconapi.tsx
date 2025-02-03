@@ -1,33 +1,61 @@
 import FalconApi, { LocalData } from "@crowdstrike/foundry-js";
-import { Navigation } from "@crowdstrike/foundry-js/lib/navigation";
-import { createContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 interface IFalconApiContext {
-  falcon: FalconApi<LocalData>;
-  navigation: Navigation<LocalData> | undefined;
+  falcon: FalconApi<LocalData> | undefined;
+  data: LocalData | undefined;
   isInitialized: boolean;
 }
-const FalconApiContext = createContext<IFalconApiContext>(
-  {} as IFalconApiContext
-);
 
-function useFalconApiContext() {
+const FalconApiContext = createContext<IFalconApiContext>({
+  falcon: undefined,
+  data: undefined,
+  isInitialized: false,
+});
+
+export function FalconApiProvider({ children }: { children: React.ReactNode }) {
+  const [falcon] = useState(() => new FalconApi());
+  const [data, setData] = useState<LocalData>();
   const [isInitialized, setIsInitialized] = useState(false);
-  const falcon = useMemo(() => new FalconApi(), []);
-  const navigation = useMemo(
-    () => (falcon.isConnected ? falcon.navigation : undefined),
-    [falcon.isConnected]
-  );
 
   useEffect(() => {
-    (async () => {
-      await falcon.connect();
+    let isMounted = true;
+    falcon.connect().then(() => {
+      if (isMounted) {
+        setIsInitialized(falcon.isConnected);
+        setData(falcon.data);
+        falcon.events.on("data", setData);
+      }
+    });
 
-      setIsInitialized(falcon.isConnected);
-    })();
-  }, []);
+    return () => {
+      // cleanup function on unrender
+      isMounted = false;
+      falcon.events.off("data", setData);
+    };
+  }, [falcon]);
 
-  return { falcon, navigation, isInitialized };
+  useEffect(() => {
+    if (data == undefined) {
+      return;
+    } else if (data.theme == "theme-dark") {
+      document.documentElement.classList.add("pf-v6-theme-dark");
+    } else {
+      document.documentElement.classList.remove("pf-v6-theme-dark");
+    }
+  }, [data]);
+
+  return (
+    <FalconApiContext.Provider value={{ falcon, data, isInitialized }}>
+      {children}
+    </FalconApiContext.Provider>
+  );
 }
 
-export { FalconApiContext, useFalconApiContext };
+export function useFalconApi() {
+  const context = useContext(FalconApiContext);
+  if (context === undefined) {
+    throw new Error("useFalconApi must be used within a FalconApiProvider");
+  }
+  return context;
+}

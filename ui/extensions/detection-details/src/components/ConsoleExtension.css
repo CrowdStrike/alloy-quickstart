@@ -1,0 +1,11 @@
+@import "@patternfly/react-core/dist/styles/base.css";
+
+body {
+  /* override height: 100% from PF which messes up foundry-js ResizeTracker */
+  height: auto;
+}
+
+.main-panel {
+  /* match other falcon details pane components */
+  padding: 12px;
+}
