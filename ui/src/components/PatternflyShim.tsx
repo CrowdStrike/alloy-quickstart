@@ -1,14 +1,12 @@
-import { Panel } from "@patternfly/react-core";
+import "@patternfly/react-core/dist/styles/base.css";
 import { ReactNode, useEffect } from "react";
-
 import { useFoundry } from "../lib/foundry-context";
-import "./ConsoleExtension.css";
 
-interface ConsoleExtensionProps {
-  children?: ReactNode;
+interface PatternflyShimProps {
+  children: ReactNode;
 }
 
-export default function ConsoleExtension({ children }: ConsoleExtensionProps) {
+export default function PatternflyShim({ children }: PatternflyShimProps) {
   const { data } = useFoundry();
 
   useEffect(() => {
@@ -21,5 +19,5 @@ export default function ConsoleExtension({ children }: ConsoleExtensionProps) {
     }
   }, [data]);
 
-  return <Panel className="main-panel">{children}</Panel>;
+  return <>{children}</>;
 }

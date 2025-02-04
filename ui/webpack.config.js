@@ -2,7 +2,10 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.tsx",
+  entry: {
+    detectionDetails: "./src/extensions/detection-details/index.tsx",
+    pages: "./src/pages/index.tsx",
+  },
   module: {
     rules: [
       {
@@ -20,13 +23,20 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js"],
   },
   output: {
-    filename: "bundle.js",
+    filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./public/index.html",
+      chunks: ["detectionDetails"],
+      filename: "detectionDetails.html",
+      template: "public/index.html",
+    }),
+    new HtmlWebpackPlugin({
+      chunks: ["pages"],
+      filename: "pages.html",
+      template: "public/index.html",
     }),
   ],
   devServer: {

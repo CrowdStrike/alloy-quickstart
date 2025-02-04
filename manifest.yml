@@ -4,15 +4,15 @@ description: ""
 logo: ""
 manifest_version: "2023-05-09"
 ignored:
-  - ui/(extensions|pages)(/.*?)/?node_modules
+  - ui/node_modules
 ui:
-  homepage: ""
+  homepage: pages.pages
   extensions:
     - id: 3828e32732654a32bfd84bd248b68b4d
       name: Sandbox details
       description: ""
-      path: ui/extensions/detection-details/dist
-      entrypoint: ui/extensions/detection-details/dist/index.html
+      path: ui/dist
+      entrypoint: ui/dist/detectionDetails.html
       sockets:
         - activity.detections.details
       content_security_policy:
@@ -25,9 +25,31 @@ ui:
         media-src: []
         object-src: []
       permissions: []
-  pages: {}
+  pages:
+    pages:
+      id: 40175246fd584a25a878532e31b71d84
+      name: pages
+      description: Multi-page app for all Sandbox pages
+      path: ui/dist
+      entrypoint: ui/dist/pages.html
+      content_security_policy:
+        connect-src: []
+        style-src: []
+        style-src-elem: []
+        script-src: []
+        form-action: []
+        img-src: []
+        media-src: []
+        object-src: []
+      permissions: []
   dashboards: {}
-  navigation: {}
+  navigation:
+    id: 30186f44ead142d9bd321c84e8c6fcbf
+    links:
+      - path: /home
+        name: Home
+        permissions: []
+        ref: pages.pages
 api_integrations: []
 rtr_scripts: []
 collections: []

@@ -1,8 +1,8 @@
 import { Tab, Tabs, TabTitleText } from "@patternfly/react-core";
 import React from "react";
-import { useFoundry } from "./lib/foundry-context";
+import { useFoundry } from "../../lib/foundry-context";
 
-import ConsoleExtension from "./components/ConsoleExtension";
+import ConsoleExtension from "../../components/ConsoleExtension";
 import Details from "./routes/details";
 import Home from "./routes/home";
 
