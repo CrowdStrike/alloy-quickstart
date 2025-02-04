@@ -12,7 +12,7 @@ ui:
       name: Sandbox details
       description: ""
       path: ui/dist
-      entrypoint: ui/dist/detectionDetails.html
+      entrypoint: ui/dist/detection-details.html
       sockets:
         - activity.detections.details
       content_security_policy:
