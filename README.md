@@ -11,14 +11,10 @@ ui/
   public/
     index.html        Template for all built HTML files (entrypoint for extensions and pages)
   src/
-    components/       React components reusable across all pages and extensions
-      PatternflyShim  Imports PatternFly styles and handles light/dark theme
-      ConsoleExtension  Extension into an existing Falcon page (includes PatternflyShim)
-      ConsolePage     Full UI page (includes PatternflyShim)
-    lib/
-      foundry-context React-ified usage of foundry-js
+    components/       React components reusable across all pages and extensions (see below)
+    lib/              Libraries reusable across all pages and extensions (see below)
     pages/            (optional) Single-page app to provide all pages
-    extensions/       (optional) Contains a subdirectory for each extension (each is a separate app)
+    extensions/       (optional) Contains a subdirectory for each extension
 ```
 
 At build time, a separate HTML file and JavaScript bundle is created for `pages`, and each extension.
