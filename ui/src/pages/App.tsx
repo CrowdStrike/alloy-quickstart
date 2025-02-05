@@ -10,7 +10,7 @@ export default function App() {
 
   return (
     <ConsolePage>
-      <Title headingLevel="h1">Pages</Title>
+      <Title headingLevel="h1">Sandbox</Title>
     </ConsolePage>
   );
 }
