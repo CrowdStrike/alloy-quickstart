@@ -1,8 +1,24 @@
+const glob = require("glob");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+var entry = {};
+var plugins = [];
+
+glob.sync("./src/{extensions/*,pages}/index.tsx").forEach((e) => {
+  const name = e.split("/").reverse()[1];
+  entry[name] = e;
+  plugins.push(
+    new HtmlWebpackPlugin({
+      chunks: [name],
+      filename: name + ".html",
+      template: "public/index.html",
+    })
+  );
+});
+
 module.exports = {
-  entry: "./src/index.tsx",
+  entry: entry,
   module: {
     rules: [
       {
@@ -20,15 +36,11 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js"],
   },
   output: {
-    filename: "bundle.js",
+    filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "./public/index.html",
-    }),
-  ],
+  plugins: plugins,
   devServer: {
     static: path.join(__dirname, "dist"),
     compress: true,
