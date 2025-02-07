@@ -1,6 +1,8 @@
-import { Title } from "@patternfly/react-core";
 import ConsolePage from "../components/ConsolePage";
 import { useFoundry } from "../lib/foundry-context";
+import Home from "./routes/Home";
+import Settings from "./routes/Settings";
+
 export default function App() {
   const { isInitialized } = useFoundry();
 
@@ -8,9 +10,18 @@ export default function App() {
     return null;
   }
 
-  return (
-    <ConsolePage>
-      <Title headingLevel="h1">Sandbox</Title>
-    </ConsolePage>
-  );
+  const routes = [
+    {
+      title: "Home",
+      path: "/home",
+      element: <Home />,
+    },
+    {
+      title: "Settings",
+      path: "/settings",
+      element: <Settings />,
+    },
+  ];
+
+  return <ConsolePage title="Sandbox" routes={routes} />;
 }
