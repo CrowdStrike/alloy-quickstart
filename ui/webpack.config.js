@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 var entry = {};
 var plugins = [];
 
-glob.sync("./src/{extensions/*,pages}/index.tsx").forEach((e) => {
+glob.sync("./src/extensions/*/index.tsx").forEach((e) => {
   const name = e.split("/").reverse()[1];
   entry[name] = e;
   plugins.push(

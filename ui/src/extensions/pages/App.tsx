@@ -1,5 +1,5 @@
-import ConsolePage from "../components/ConsolePage";
-import { useFoundry } from "../lib/foundry-context";
+import ConsolePage from "../../components/ConsolePage";
+import { useFoundry } from "../../lib/foundry-context";
 import Home from "./routes/Home";
 import Settings from "./routes/Settings";
 

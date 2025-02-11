@@ -42,14 +42,34 @@ ui:
         media-src: []
         object-src: []
       permissions: []
+    simple_page:
+      id: 79e20123fcdc41d6ad0e5521aec966f5
+      name: Simple Page
+      description: A non-multi-page (non-routed) example page
+      path: ui/dist
+      entrypoint: ui/dist/page-single.html
+      content_security_policy:
+        connect-src: []
+        style-src: []
+        style-src-elem: []
+        script-src: []
+        form-action: []
+        img-src: []
+        media-src: []
+        object-src: []
+      permissions: []
   dashboards: {}
   navigation:
     id: 30186f44ead142d9bd321c84e8c6fcbf
     links:
       - path: /home
-        name: Home
+        name: Multi Page
         permissions: []
         ref: pages.pages
+      - path: /
+        name: Simple Page
+        permissions: []
+        ref: pages.simple_page
 api_integrations: []
 rtr_scripts: []
 collections: []

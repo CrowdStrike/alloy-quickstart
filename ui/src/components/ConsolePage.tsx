@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 
 import {
   Masthead,
@@ -22,8 +22,9 @@ import {
 import PatternflyShim from "./PatternflyShim";
 
 interface ConsolePageProps {
+  children?: ReactNode;
   title: string;
-  routes: ConsolePageRoute[];
+  routes?: ConsolePageRoute[];
 }
 
 interface ConsolePageRoute {
@@ -32,17 +33,25 @@ interface ConsolePageRoute {
   element: ReactElement;
 }
 
-export default function ConsolePage({ title, routes }: ConsolePageProps) {
+export default function ConsolePage({
+  children,
+  title,
+  routes,
+}: ConsolePageProps) {
   return (
     <PatternflyShim>
       <HashRouter>
-        <PageLayout title={title} routes={routes} />
+        <PageLayout title={title} routes={routes}>
+          {children}
+        </PageLayout>
       </HashRouter>
     </PatternflyShim>
   );
 }
 
-function PageLayout({ title, routes }: ConsolePageProps) {
+function PageLayout({ children, title, routes }: ConsolePageProps) {
+  const hasRoutes = routes !== undefined;
+
   const masthead = (
     <Masthead>
       <MastheadMain>
@@ -55,7 +64,7 @@ function PageLayout({ title, routes }: ConsolePageProps) {
 
   // useLocation can only be used inside of a Router, so we created this separate PageLayout component
   const location = useLocation();
-  const sidebar = (
+  const sidebar = hasRoutes ? (
     <PageSidebar>
       <PageSidebarBody>
         <Nav>
@@ -71,15 +80,18 @@ function PageLayout({ title, routes }: ConsolePageProps) {
         </Nav>
       </PageSidebarBody>
     </PageSidebar>
-  );
+  ) : null;
 
   return (
     <Page masthead={masthead} sidebar={sidebar}>
-      <Routes>
-        {routes.map((r) => {
-          return <Route path={r.path} element={r.element} />;
-        })}
-      </Routes>
+      {children}
+      {hasRoutes && (
+        <Routes>
+          {routes.map((r) => {
+            return <Route path={r.path} element={r.element} />;
+          })}
+        </Routes>
+      )}
     </Page>
   );
 }
