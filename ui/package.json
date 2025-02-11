@@ -5,7 +5,6 @@
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
     "watch": "webpack --mode production --watch",
-    "watch:dev": "webpack --mode development --watch",
     "clean": "rm -rf dist"
   },
   "dependencies": {
