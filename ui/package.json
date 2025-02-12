@@ -11,7 +11,8 @@
     "@crowdstrike/foundry-js": "^0.17.1",
     "@patternfly/react-core": "^6.1.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.1.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
