@@ -1,5 +1,5 @@
 {
-  "name": "minimal-react-typescript-app",
+  "name": "alloy-quickstart",
   "version": "1.0.0",
   "scripts": {
     "start": "webpack serve --mode development",
@@ -8,11 +8,9 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@crowdstrike/foundry-js": "^0.17.1",
-    "@patternfly/react-core": "^6.1.0",
+    "@crowdstrike/alloy-react": "^0.0.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^7.1.5"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

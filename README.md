@@ -1,6 +1,14 @@
-# foundry-sandbox
+<p align="center">
+   <img src="https://raw.githubusercontent.com/CrowdStrike/falconpy/main/docs/asset/cs-logo.png" alt="CrowdStrike logo" width="500"/>
+</p>
 
-👋 This is Evan Stoner's personal reference, template, and playground for working with Foundry apps.
+# alloy-quickstart
+
+_Opinionated building blocks for robust Foundry apps._
+
+## Support
+
+This repository is an open source project, not a CrowdStrike product. As such, it carries no formal support, expressed or implied.
 
 ## UI (extensions and pages)
 
@@ -11,82 +19,11 @@ ui/
   public/
     index.html      Template for all built HTML files (entrypoint for extensions and pages)
   src/
-    components/     React components reusable across all pages and extensions (see below)
-    lib/            Libraries reusable across all pages and extensions (see below)
+    components/     (Optional) React components reusable across all pages and extensions
+    lib/            (Optional) Libraries reusable across all pages and extensions
     apps/           Contains a subdirectory for each extension or page
 ```
 
 At build time, a separate HTML file and JavaScript bundle is created for each page and extension. Each subdirectory of `apps` is treated the same, whether it's an extension or a page. By convention, we'll create a `pages` directory for a multi-page app. Any other naming is up to you.
 
-### Reusable components
-
-- `PatternflyShim` - Just imports the PatternFly CSS so that you can use [any PatternFly component](https://www.patternfly.org/components/all-components) in your app. Also handles light/dark mode switching so the extension or page matches the Falcon console.
-- `ConsoleExtension` - Extension into an existing Falcon page, e.g detection details pane. Applies some necessary styling.
-- `ConsolePage` - A full page in the Falcon console, potentially with Falcon navigation.
-
-Both `ConsoleExtension` and `ConsolePage` include `PatternflyShim`, so you don't need to manually include `PatternflyShim` if you are using these components.
-
-### Reusable libraries
-
-`foudry-context` is a React-ified wrapper of foundry-js:
-
-- `FoundryContext` - A React context containing the `falcon` object and `data` associated with the extension or page. The `data` is the same as `falcon.data`, but wrapped in a `useState` (and also automatically updated through `falcon.events.on('data')`).
-- `FoundryProvider` - Every context has to have a provider. This is where we create the `falcon` object, `connect()` it, and handle other setup.
-- `useFoundry` - A custom hook that loads the `FoundryContext` (must be used within a `FoundryProvider`). Use this hook instead of manually calling `useContext(FoundryContext)`.
-
-### Example usage
-
-For any page or extension, wrap the `<App />` in a `<FoundryProvider>` in the `index.tsx`:
-
-```jsx
-// src/apps/pages/index.tsx
-root.render(
-  <React.StrictMode>
-    <FoundryProvider>
-      <App />
-    </FoundryProvider>
-  </React.StrictMode>
-);
-```
-
-Then in the `App.tsx`, wrap your content in either a `<ConsoleExtension>` or `<ConsolePage>`. For single pages, you can nest your content immediately below the `<ConsolePage>`:
-
-```jsx
-// src/apps/page-single/App.tsx
-return (
-  <ConsolePage title="Sandbox">
-    <PageSection>
-      <Title headingLevel="h3">Single Page</Title>
-```
-
-For multi-page pages, you can pass in routes to the `<ConsolePage>`; routing and a sidebar will be handled automatically:
-
-```jsx
-// src/apps/pages/App.tsx
-const routes = [
-  {
-    title: "Home",
-    path: "/home",
-    element: <Home />,
-  },
-  // ... snip: more routes ...
-];
-
-return <ConsolePage title="Sandbox" routes={routes} />;
-```
-
-Since you wrapped everything in a `FalconProvider`, you're also free to `useFoundry` to get the `falcon` and/or `data` objects (you can do this in your `App.tsx`, or anywhere else):
-
-```jsx
-// src/apps/detection-details/App.tsx
-const { data, isInitialized } = useFoundry();
-
-// ... snip: activeTabKey and handleTabClick setup ...
-
-return (
-  <ConsoleExtension>
-    <Tabs activeKey={activeTabKey} onSelect={handleTabClick}>
-      <Tab title={<TabTitleText>Home</TabTitleText>} eventKey="home">
-        <Home detection={data!.detection} />
-      </Tab>
-```
+Extensions and pages are built using [alloy-react](https://github.com/CrowdStrike/alloy-react), which provides [PatternFly](https://www.patternfly.org/).

@@ -1,5 +1,5 @@
 app_id: 051b216f130f46f5a4b37297ef372ab0
-name: foundry-sandbox
+name: alloy-react-blueprint
 description: ""
 logo: ""
 manifest_version: "2023-05-09"
@@ -9,7 +9,7 @@ ui:
   homepage: pages.pages
   extensions:
     - id: 3828e32732654a32bfd84bd248b68b4d
-      name: Sandbox details
+      name: Alloy example
       description: ""
       path: ui/dist
       entrypoint: ui/dist/detection-details.html
@@ -28,8 +28,8 @@ ui:
   pages:
     pages:
       id: 40175246fd584a25a878532e31b71d84
-      name: pages
-      description: Multi-page app for all Sandbox pages
+      name: Multi-Page
+      description: Multi-page app example
       path: ui/dist
       entrypoint: ui/dist/pages.html
       content_security_policy:
@@ -42,9 +42,9 @@ ui:
         media-src: []
         object-src: []
       permissions: []
-    simple_page:
+    single_page:
       id: 79e20123fcdc41d6ad0e5521aec966f5
-      name: Simple Page
+      name: Single Page
       description: A non-multi-page (non-routed) example page
       path: ui/dist
       entrypoint: ui/dist/page-single.html
@@ -67,9 +67,9 @@ ui:
         permissions: []
         ref: pages.pages
       - path: /
-        name: Simple Page
+        name: Single Page
         permissions: []
-        ref: pages.simple_page
+        ref: pages.single_page
 api_integrations: []
 rtr_scripts: []
 collections: []

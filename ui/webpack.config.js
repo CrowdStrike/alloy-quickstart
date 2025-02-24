@@ -34,6 +34,13 @@ module.exports = {
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
+    // ensure patternfly imports from alloy are resolved (required for font processing)
+    alias: {
+      "@patternfly/react-core": path.resolve(
+        __dirname,
+        "node_modules/@patternfly/react-core"
+      ),
+    },
   },
   output: {
     filename: "[name].[contenthash].js",
