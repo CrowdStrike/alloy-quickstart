@@ -1,6 +1,5 @@
 import { PageSection, Title } from "@patternfly/react-core";
-import ConsolePage from "../../components/ConsolePage";
-import { useFoundry } from "../../lib/foundry-context";
+import { ConsolePage, useFoundry } from "alloy-react";
 
 export default function App() {
   const { isInitialized } = useFoundry();
