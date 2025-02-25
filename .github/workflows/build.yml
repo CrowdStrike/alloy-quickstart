@@ -45,3 +45,26 @@ jobs:
           key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-build-
+
+  manifest-ids:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: pip install -r utils/requirements.txt
+
+      - name: Ensure manifest.new.yml is up to date
+        run: |
+          set +e
+          ./utils/remove_manifest_ids.py
+          git diff --exit-code manifest.new.yml
+          exitcode=$?
+          if [ $exitcode -eq 1 ] ; then
+            echo
+            echo -e "\e[31mmanifest.new.yml is not up to date with manifest.yml\e[0m"
+            echo " - please run ./utils/remove_manifest_ids.py"
+            echo " - do not run prettier or any formatter on manifest.new.yml"
+          fi
+          exit $exitcode
