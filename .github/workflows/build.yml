@@ -57,6 +57,7 @@ jobs:
 
       - name: Ensure manifest.new.yml is up to date
         run: |
+          set +e
           ./utils/remove_manifest_ids.py
           git diff --exit-code manifest.new.yml
           exitcode=$?
