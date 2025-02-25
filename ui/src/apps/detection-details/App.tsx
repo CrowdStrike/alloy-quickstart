@@ -2,7 +2,7 @@ import { Tab, Tabs, TabTitleText } from "@patternfly/react-core";
 
 import React from "react";
 
-import { ConsoleExtension, useFoundry } from "alloy-react";
+import { ConsoleExtension, useFoundry } from "@crowdstrike/alloy-react";
 import Details from "./routes/details";
 import Home from "./routes/home";
 
