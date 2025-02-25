@@ -62,8 +62,9 @@ jobs:
           git diff --exit-code manifest.new.yml
           exitcode=$?
           if [ $exitcode -eq 1 ] ; then
-            echo "manifest.new.yml is not up to date with manifest.yml"
+            echo
+            echo -e "\e[31mmanifest.new.yml is not up to date with manifest.yml"
             echo "please run ./utils/remove_manifest_ids.py"
-            echo "(do not run prettier or any formatter on manifest.new.yml)"
+            echo -e "(do not run prettier or any formatter on manifest.new.yml)\e[0m"
           fi
           exit $exitcode
