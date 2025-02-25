@@ -1,29 +1,29 @@
 name: alloy-quickstart
-description: ""
-logo: ""
-manifest_version: "2023-05-09"
+description: ''
+logo: ''
+manifest_version: '2023-05-09'
 ignored:
-  - ui/node_modules
-  - utils
+- ui/node_modules
+- utils
 ui:
   homepage: pages.pages
   extensions:
-    - name: Alloy example
-      description: ""
-      path: ui/dist
-      entrypoint: ui/dist/detection-details.html
-      sockets:
-        - activity.detections.details
-      content_security_policy:
-        connect-src: []
-        style-src: []
-        style-src-elem: []
-        script-src: []
-        form-action: []
-        img-src: []
-        media-src: []
-        object-src: []
-      permissions: []
+  - name: Alloy example
+    description: ''
+    path: ui/dist
+    entrypoint: ui/dist/detection-details.html
+    sockets:
+    - activity.detections.details
+    content_security_policy:
+      connect-src: []
+      style-src: []
+      style-src-elem: []
+      script-src: []
+      form-action: []
+      img-src: []
+      media-src: []
+      object-src: []
+    permissions: []
   pages:
     pages:
       name: Multi-Page
@@ -58,18 +58,18 @@ ui:
   dashboards: {}
   navigation:
     links:
-      - path: /home
-        name: Multi Page - Home
-        permissions: []
-        ref: pages.pages
-      - path: /settings
-        name: Multi Page - Settings
-        permissions: []
-        ref: pages.pages
-      - path: /
-        name: Single Page
-        permissions: []
-        ref: pages.single_page
+    - path: /home
+      name: Multi Page - Home
+      permissions: []
+      ref: pages.pages
+    - path: /settings
+      name: Multi Page - Settings
+      permissions: []
+      ref: pages.pages
+    - path: /
+      name: Single Page
+      permissions: []
+      ref: pages.single_page
 api_integrations: []
 rtr_scripts: []
 collections: []

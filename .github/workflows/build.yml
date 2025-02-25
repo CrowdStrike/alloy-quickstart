@@ -63,8 +63,8 @@ jobs:
           exitcode=$?
           if [ $exitcode -eq 1 ] ; then
             echo
-            echo -e "\e[31mmanifest.new.yml is not up to date with manifest.yml"
-            echo "please run ./utils/remove_manifest_ids.py"
-            echo -e "(do not run prettier or any formatter on manifest.new.yml)\e[0m"
+            echo -e "\e[31mmanifest.new.yml is not up to date with manifest.yml\e[0m"
+            echo " - please run ./utils/remove_manifest_ids.py"
+            echo " - do not run prettier or any formatter on manifest.new.yml"
           fi
           exit $exitcode
