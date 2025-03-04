@@ -14,7 +14,7 @@ This repository is an open source project, not a CrowdStrike product. As such, i
 
 1. Clone this repo
 1. Remove our git history: `rm -rf .git`
-1. Build the UI: `cd ui && npm install && npm run build`
+1. Build the UI: `npm install --prefix ui && npm run build --prefix ui`
 1. Deploy the app: `mv manifest.new.yml manifest.yml && foundry apps deploy`
 
 ## UI (extensions and pages)
