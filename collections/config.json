@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "properties": {
+    "special_key": {
+      "type": "string",
+      "title": "Special key",
+      "description": "For example, to configure an API path variable"
+    },
+    "options": {
+      "type": "string",
+      "title": "Options",
+      "description": "Choose a color",
+      "enum": [
+        "red",
+        "green",
+        "blue"
+      ]
+    },
+    "sender": {
+      "type": "string",
+      "title": "Sender",
+      "description": "Where emails would come from, if this app did that"
+    },
+    "percentage": {
+      "type": "number",
+      "default": 50,
+      "maximum": 0,
+      "minimum": 100,
+      "title": "Percentage",
+      "description": "A range from 0 to 100"
+    }
+  },
+  "required": [
+    "special_key"
+  ]
+}
