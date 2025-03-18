@@ -72,7 +72,14 @@ ui:
       ref: pages.single_page
 api_integrations: []
 rtr_scripts: []
-collections: []
+collections:
+- name: config
+  description: Global configuration for the app
+  schema: collections/config.json
+  permissions: []
+  workflow_integration:
+    system_action: true
+    tags: []
 auth:
   scopes: []
   permissions: {}
